@@ -29,7 +29,9 @@ def main():
 
     draw_board(canvas, board)
 
+    # إعادة تشغيل اللعبة بدون إغلاق البرنامج.
     def restart():
+        # بنقول لبايثون إننا هنعدّل متغيرات خارج الدالة
         nonlocal board, current_player, game_over, last_move
         board = create_board()
         current_player = PLAYER
@@ -53,7 +55,8 @@ def main():
         draw_board(canvas, board, last_move)
 
         if winning_move(board, current_player):
-            messagebox.showinfo("Game Over", "Player Wins!")
+            winner = "Player 1" if current_player == PLAYER else "Player 2"
+            messagebox.showinfo("Game Over", f"{winner} Wins!")
             game_over = True
             return
 
@@ -68,7 +71,7 @@ def main():
                 messagebox.showinfo("Game Over", "AI Wins!")
                 game_over = True
 
-        else:
+        else:  # mode == "user_vs_user":
             current_player = AI if current_player == PLAYER else PLAYER
 
     def ai_vs_ai():
