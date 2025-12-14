@@ -43,7 +43,7 @@ def select_mode():
 
     root = tk.Tk()
     tk.Button(root, text="User vs AI", command=lambda: choose("user_vs_ai")).pack()
-
+    tk.Button(root, text="AI vs AI", command=lambda: choose("ai_vs_ai")).pack()
     tk.Button(root, text="User vs User", command=lambda: choose("user_vs_user")).pack()
     root.mainloop()
     root.destroy()
