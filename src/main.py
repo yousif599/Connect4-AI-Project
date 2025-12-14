@@ -5,6 +5,8 @@ from board import *
 from game import *
 from minimax import *
 from gui import *
+
+
 def main():
     mode = select_mode()
     if not mode:
@@ -51,9 +53,12 @@ def main():
     frame.pack()
 
     for c in range(COLS):
-        tk.Button(frame, text=str(c+1), command=lambda x=c: click(x)).pack(side=tk.LEFT)
+        tk.Button(frame, text=str(c + 1), command=lambda x=c: click(x)).pack(
+            side=tk.LEFT
+        )
 
     root.mainloop()
+
 
 if __name__ == "__main__":
     main()
