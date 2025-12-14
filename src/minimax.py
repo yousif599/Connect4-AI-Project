@@ -2,6 +2,7 @@ import numpy as np
 from board import *
 from game import *
 
+
 def evaluate_window(window, piece):
     score = 0
     opp_piece = PLAYER if piece == AI else AI
@@ -18,6 +19,7 @@ def evaluate_window(window, piece):
 
     return score
 
+
 def score_position(board, piece):
     score = 0
     center_array = list(board[:, COLS // 2])
@@ -26,19 +28,20 @@ def score_position(board, piece):
     for r in range(ROWS):
         row = list(board[r])
         for c in range(COLS - 3):
-            score += evaluate_window(row[c:c+4], piece)
+            score += evaluate_window(row[c : c + 4], piece)
 
     for c in range(COLS):
         col = list(board[:, c])
         for r in range(ROWS - 3):
-            score += evaluate_window(col[r:r+4], piece)
+            score += evaluate_window(col[r : r + 4], piece)
 
     for r in range(ROWS - 3):
         for c in range(COLS - 3):
-            score += evaluate_window([board[r+i][c+i] for i in range(4)], piece)
-            score += evaluate_window([board[r+3-i][c+i] for i in range(4)], piece)
+            score += evaluate_window([board[r + i][c + i] for i in range(4)], piece)
+            score += evaluate_window([board[r + 3 - i][c + i] for i in range(4)], piece)
 
     return score
+
 
 def minimax(board, depth, alpha, beta, maximizing, piece):
     valid_locations = get_valid_locations(board)
@@ -58,7 +61,7 @@ def minimax(board, depth, alpha, beta, maximizing, piece):
             row = get_next_open_row(board, col)
             temp = board.copy()
             drop_piece(temp, row, col, piece)
-            new_score = minimax(temp, depth-1, alpha, beta, False, piece)[1]
+            new_score = minimax(temp, depth - 1, alpha, beta, False, piece)[1]
             if new_score > value:
                 value = new_score
                 best_col = col
@@ -75,7 +78,7 @@ def minimax(board, depth, alpha, beta, maximizing, piece):
             row = get_next_open_row(board, col)
             temp = board.copy()
             drop_piece(temp, row, col, opp)
-            new_score = minimax(temp, depth-1, alpha, beta, True, piece)[1]
+            new_score = minimax(temp, depth - 1, alpha, beta, True, piece)[1]
             if new_score < value:
                 value = new_score
                 best_col = col
