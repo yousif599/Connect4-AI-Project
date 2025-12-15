@@ -42,7 +42,7 @@ def draw_board(canvas, board, last_move=None):
                 fill=color,
                 outline=color,
             )
-
+    # نرسم حلقه حول اخر لعبه
     if last_move:
         r, c = last_move
         canvas.create_oval(
@@ -68,6 +68,17 @@ def select_mode():
     root = tk.Tk()
     root.configure(bg=BG_COLOR)
     root.title("Connect 4 - AI Project")
+    win_width = 500
+    win_height = 400
+
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    x = (screen_width // 2) - (win_width // 2)
+    y = (screen_height // 2) - (win_height // 2)
+
+    root.geometry(f"{win_width}x{win_height}+{x}+{y}")
+    root.resizable(False, False)
 
     tk.Label(
         root, text="Select Mode", bg=BG_COLOR, fg="white", font=("Arial", 16)
